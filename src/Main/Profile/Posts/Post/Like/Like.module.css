@@ -1,0 +1,7 @@
+.like {
+    display: flex;
+    align-items: stretch;
+}
+.pic {
+    margin-right: 10px;
+}

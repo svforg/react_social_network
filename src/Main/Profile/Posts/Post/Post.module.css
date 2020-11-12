@@ -1,0 +1,14 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding: 16px 24px;
+    background: var(--iq-dark-box);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 20px 0 rgba(44, 101, 144, 0.1);
+}
+
+
+

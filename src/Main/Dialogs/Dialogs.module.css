@@ -1,0 +1,32 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.listName {
+    max-height: 100vh;
+    border: 1px solid red;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: var(--iq-dark-box);
+}
+
+
+.name {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+.name.active {
+    color: var(--iq-primary);
+    background-color: var(--iq-dark-primary);
+}
+
+.listMessage {
+    border: 1px solid red;
+    padding: 15px;
+}
+
+.message {
+
+}
