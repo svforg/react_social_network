@@ -1,0 +1,8 @@
+.main {
+    grid-area: main;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 30px;
+}
