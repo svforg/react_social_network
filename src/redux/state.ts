@@ -3,6 +3,7 @@ type PostsType = {
     text: string,
     like: number,
 };
+
 type ProfileType = {
     posts: Array<PostsType>,
 };
@@ -23,8 +24,8 @@ type DialogsType = {
 };
 
 type RootStateType = {
-    profile: Array<ProfileType>,
-    dialogs: Array<DialogsType>,
+    profile: ProfileType,
+    dialogs: DialogsType,
 }
 
 let state: RootStateType = {

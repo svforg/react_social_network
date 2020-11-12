@@ -26,18 +26,16 @@ type MainPropsType = {
 }
 export function Main(props: MainPropsType) {
     return (
-        <BrowserRouter>
-            <main className={css.main}>
-                <Route path="/dialogs" render={ () =>
-                    <Dialogs persons={props.persons} messages={props.messages} /> }/>
+        <main className={css.main}>
+            <Route path="/profile" render={ () =>
+                <Profile posts={props.posts} /> }/>
 
-                <Route path="/dialogs" render={ () =>
-                    <Profile posts={props.posts} /> }/>
+            <Route path="/dialogs" render={ () =>
+                <Dialogs persons={props.persons} messages={props.messages} /> }/>
 
-                <Route path="/dialogs" render={ () => <News /> }/>
-                <Route path="/dialogs" render={ () => <Music /> }/>
-                <Route path="/dialogs" render={ () => <Settings /> }/>
-            </main>
-        </BrowserRouter>
+            <Route path="/news" render={ () => <News /> }/>
+            <Route path="/music" render={ () => <Music /> }/>
+            <Route path="/settings" render={ () => <Settings /> }/>
+        </main>
     );
 }

@@ -10,7 +10,7 @@ type PostsPropsType = {
     posts: Array<PostPropsType>,
 }
 export function Posts(props: PostsPropsType) {
-    debugger;
+
     let postElements = props.posts
         .map( post => <Post text={post.text} like={post.like}/> );
 

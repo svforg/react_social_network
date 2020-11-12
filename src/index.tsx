@@ -5,23 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import state from "./redux/state";
 
-
-type PersonPropsType = {
-    id: number,
-    name: string,
-}
-type MessagePropsType = {
-    text: string,
-}
-type PostPropsType = {
-    text: string,
-    like: number,
-}
-
-let posts : Array<PostPropsType> = state.profile.posts;
-let persons : Array<PersonPropsType> = state.dialogs.persons;
-let messages : Array<MessagePropsType> = state.dialogs.messages;
-
+let posts = state.profile.posts;
+let persons = state.dialogs.persons;
+let messages  = state.dialogs.messages;
 
 ReactDOM.render(<App posts={posts} persons={persons} messages={messages} />,  document.getElementById('root'));
 
