@@ -4,11 +4,11 @@ import {Posts} from "./Posts/Posts";
 import {User} from "./User/User";
 
 type PostPropsType = {
-    text: string,
-    like: number,
+    text: string
+    like: number
 }
 type ProfilePropsType = {
-    posts: Array<PostPropsType>,
+    posts: Array<PostPropsType>
 }
 export function Profile(props: ProfilePropsType) {
 

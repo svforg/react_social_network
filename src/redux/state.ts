@@ -1,31 +1,41 @@
 type PostsType = {
-    id: number,
-    text: string,
-    like: number,
+    id: number
+    text: string
+    like: number
 };
 
 type ProfileType = {
-    posts: Array<PostsType>,
+    posts: Array<PostsType>
 };
 
 type PersonsType = {
-    id: number,
-    name: string,
+    id: number
+    name: string
 };
 
 type MessagesType = {
-    id: number,
-    text: string,
+    id: number
+    text: string
 };
 
 type DialogsType = {
-    persons: Array<PersonsType>,
-    messages: Array<MessagesType>,
+    persons: Array<PersonsType>
+    messages: Array<MessagesType>
 };
 
+type SidebarItemsType = {
+    slug: string
+    title: string
+}
+
+type SidebarType = {
+    sidebarItems: Array<SidebarItemsType>
+}
+
 type RootStateType = {
-    profile: ProfileType,
-    dialogs: DialogsType,
+    profile: ProfileType
+    dialogs: DialogsType
+    sidebar: SidebarType
 }
 
 let state: RootStateType = {
@@ -48,6 +58,15 @@ let state: RootStateType = {
             {id: 2, text: "hi from Dimbl4"},
             {id: 3, text: "hi from Svetbl4"},
             {id: 4, text: "hi from Yambl4"},
+        ],
+    },
+    sidebar: {
+        sidebarItems : [
+            { slug:"/profile", title: "Profile" },
+            { slug:"/dialogs", title: "Messages" },
+            { slug:"/news", title: "News" },
+            { slug:"/music", title: "Music" },
+            { slug:"/settings", title: "Settings" }
         ],
     }
 };

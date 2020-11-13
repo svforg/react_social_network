@@ -5,8 +5,8 @@ import {Message} from "./Message/Message";
 import {Like} from "./Like/Like";
 
 type PostPropsType = {
-    text: string,
-    like: number,
+    text: string
+    like: number
 }
 
 export function Post(props: PostPropsType) {

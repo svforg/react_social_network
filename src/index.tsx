@@ -8,8 +8,9 @@ import state from "./redux/state";
 let posts = state.profile.posts;
 let persons = state.dialogs.persons;
 let messages  = state.dialogs.messages;
+let sidebarItems  = state.sidebar.sidebarItems;
 
-ReactDOM.render(<App posts={posts} persons={persons} messages={messages} />,  document.getElementById('root'));
+ReactDOM.render(<App sidebarItems={sidebarItems} posts={posts} persons={persons} messages={messages} />,  document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

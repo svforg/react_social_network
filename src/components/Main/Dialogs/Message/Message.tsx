@@ -2,7 +2,7 @@ import React from "react";
 import css from './Message.module.css';
 
 type MessagePropsType = {
-    text: string,
+    text: string
 }
 export function Message(props: MessagePropsType) {
     return (

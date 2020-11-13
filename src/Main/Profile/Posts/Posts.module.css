@@ -1,7 +1,0 @@
-.posts {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-width: 650px;
-    width: 100%;
-}

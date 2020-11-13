@@ -9,20 +9,20 @@ import {Settings} from "./Settings/Settings";
 
 
 type PersonPropsType = {
-    id: number,
-    name: string,
+    id: number
+    name: string
 }
 type MessagePropsType = {
-    text: string,
+    text: string
 }
 type PostPropsType = {
-    text: string,
-    like: number,
+    text: string
+    like: number
 }
 type MainPropsType = {
-    posts: Array<PostPropsType>,
-    persons: Array<PersonPropsType>,
-    messages: Array<MessagePropsType>,
+    posts: Array<PostPropsType>
+    persons: Array<PersonPropsType>
+    messages: Array<MessagePropsType>
 }
 export function Main(props: MainPropsType) {
     return (

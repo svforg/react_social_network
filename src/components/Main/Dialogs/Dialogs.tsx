@@ -4,15 +4,15 @@ import {Message} from "./Message/Message";
 import {Person} from "./Person/Person";
 
 type PersonPropsType = {
-    id: number,
-    name: string,
+    id: number
+    name: string
 }
 type MessagePropsType = {
-    text: string,
+    text: string
 }
 type DialogsPropsType = {
-    persons: Array<PersonPropsType>,
-    messages: Array<MessagePropsType>,
+    persons: Array<PersonPropsType>
+    messages: Array<MessagePropsType>
 }
 
 export function Dialogs(props: DialogsPropsType) {

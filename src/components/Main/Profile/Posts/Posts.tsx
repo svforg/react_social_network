@@ -3,11 +3,11 @@ import css from './Posts.module.css';
 import {Post} from "./Post/Post";
 
 type PostPropsType = {
-    text: string,
-    like: number,
+    text: string
+    like: number
 }
 type PostsPropsType = {
-    posts: Array<PostPropsType>,
+    posts: Array<PostPropsType>
 }
 export function Posts(props: PostsPropsType) {
 
