@@ -1,22 +1,26 @@
 import React from "react";
-import css from './Posts.module.css';
+import css from './Posts.module.scss';
 import {Post} from "./Post/Post";
+import {ProfilePostType} from "../../../../redux/reducers/profileReducer";
 
-type PostPropsType = {
-    text: string
-    like: number
-}
 type PostsPropsType = {
-    posts: Array<PostPropsType>
+    state: Array<ProfilePostType>
 }
-export function Posts(props: PostsPropsType) {
 
-    let postElements = props.posts
-        .map( post => <Post text={post.text} like={post.like}/> );
+const PostsMemo: React.FC<PostsPropsType> = (
+    {
+        state
+    }
+) => {
+
+    const postElements = state
+        .map(post => <Post key={post.id} text={post.text} like={post.like}/>);
 
     return (
         <section className={css.posts}>
-            { postElements }
+            {postElements}
         </section>
     );
-}
+};
+
+export const Posts = React.memo(PostsMemo);

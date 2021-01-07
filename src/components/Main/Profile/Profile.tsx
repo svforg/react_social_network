@@ -1,21 +1,33 @@
 import React from "react";
-import css from './Profile.module.css';
 import {Posts} from "./Posts/Posts";
 import {User} from "./User/User";
+import {CreatePost} from "./CreatePost/CreatePost";
+import {ProfileType} from "../../../redux/reducers/profileReducer";
 
-type PostPropsType = {
-    text: string
-    like: number
-}
 type ProfilePropsType = {
-    posts: Array<PostPropsType>
+    profile: ProfileType
+    addProfilePost: () => void
+    addProfilePostText: (title: string) => void
 }
-export function Profile(props: ProfilePropsType) {
 
+export const Profile: React.FC<ProfilePropsType> = React.memo((
+    {
+        profile,
+        addProfilePost,
+        addProfilePostText,
+    }
+) => {
     return (
         <>
-            <User />
-            <Posts posts={props.posts}/>
+            <User/>
+
+            <CreatePost
+                addProfilePost={addProfilePost}
+                addProfilePostText={addProfilePostText}
+                state={profile.postText}/>
+
+            <Posts
+                state={profile.posts}/>
         </>
     );
-}
+});

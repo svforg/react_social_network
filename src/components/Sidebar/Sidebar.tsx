@@ -1,44 +1,29 @@
 import React from "react";
-import {BrowserRouter, NavLink} from "react-router-dom";
-import css from './Sidebar.module.css';
-import {Post} from "../Main/Profile/Posts/Post/Post";
+import css from './Sidebar.module.scss';
+import {Item} from "./SidebarItem/SidebarItem";
+import {SidebarType} from "../../redux/actions/sidebarActions";
 
-type SidebarItemsPropsType = {
-    slug: string
-    title: string
+type SidebarPropsType = {
+    sidebar: Array<SidebarType>
 }
-type SidebarType = {
-    sidebarItems: Array<SidebarItemsPropsType>
-}
+export const Sidebar: React.FC<SidebarPropsType> = React.memo((
+    {
+        sidebar
+    }
+) => {
 
-export function Sidebar(props: SidebarType) {
-    let sidebarElements = props.sidebarItems
-        .map( sidebarItem => <Item slug={sidebarItem.slug} title={sidebarItem.title}/> );
-
+    const sidebarElements = sidebar
+        .map((sidebarItem: SidebarType) => <Item sidebarItem={sidebarItem}/>);
 
     return (
         <aside className={css.sidebar}>
+
             <nav>
+
                 <ul className={css.list}>
-                    { sidebarElements }
-
-
+                    {sidebarElements}
                 </ul>
             </nav>
         </aside>
     );
-}
-
-
-type ItemSidebarPropsType = {
-    slug: string
-    title: string
-}
-
-export function Item(props: ItemSidebarPropsType) {
-    return (
-        <li className={css.item}>
-            <NavLink activeClassName={css.active} to={props.slug}>{props.title}</NavLink>
-        </li>
-    );
-}
+});

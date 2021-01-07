@@ -1,0 +1,56 @@
+@import '../mixins/mq';
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+html.scroll-disable {
+  overflow: unset;
+
+  body {
+    overflow: hidden;
+  }
+}
+
+.site-inner {
+  display: flex;
+  flex-direction: column;
+
+  &.scroll-disable {
+    margin-right: 17px;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include mq($until: mobileMax) {
+    max-width: 100%;
+    padding: $paddingWrapperMobile;
+  }
+
+  @include mq($from: tabletMin, $until: tabletMax) {
+    max-width: 720px;
+  }
+
+  @include mq($from: laptopMin, $until: laptopMax) {
+    max-width: 960px;
+    padding: $paddingWrapperLaptops;
+  }
+
+  @include mq($from: desktopMin) {
+    max-width: $containerWidth;
+    padding: $paddingWrapperDesktop;
+  }
+}
+
+ul, menu, ol, section, figure, aside {
+  margin: 0;
+  padding: 0;
+}
+
+

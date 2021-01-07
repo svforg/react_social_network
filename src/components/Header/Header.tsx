@@ -1,7 +1,7 @@
 import React from "react";
-import css from './Header.module.css';
+import css from './Header.module.scss';
 
-export function Header() {
+export const Header: React.FC = () => {
     return (
         <header className={css.header}>
 
@@ -15,4 +15,4 @@ export function Header() {
             </a>
         </header>
     );
-}
+};

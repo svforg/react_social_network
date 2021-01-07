@@ -1,8 +1,9 @@
 import React from "react";
-import css from './User.module.css';
+import css from './User.module.scss';
 
-
-export function User() {
+const UserMemo: React.FC = (
+    {}
+) => {
     return (
         <div className={css.user}>
 
@@ -10,7 +11,7 @@ export function User() {
 
                 <img className={css.pic}
                      src="https://iqonic.design/themes/socialv/html-dark/images/user/01.jpg"
-                     alt="" />
+                     alt=""/>
             </div>
 
             <h5 className={css.name}>
@@ -18,4 +19,6 @@ export function User() {
             </h5>
         </div>
     );
-}
+};
+
+export const User = React.memo(UserMemo);

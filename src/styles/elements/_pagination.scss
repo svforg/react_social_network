@@ -1,0 +1,63 @@
+.pagination-navigation {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding-bottom: 50px;
+
+  .pagination {
+    display: flex;
+    margin: 17px 0 8px;
+    padding: 0;
+    border-radius: $borderRadiusPrimary;
+    //box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid $colorLightThird;
+    position: relative;
+    overflow: auto;
+
+    span, a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 36px;
+      font-size: 14px;
+      color: $colorDarkPrimary;
+      background: $colorLightSecondary;
+      line-height: 0;
+      height: 36px;
+      cursor: pointer;
+      border-right: 1px solid $colorLightThird;
+      transition: all $transitionDurationPrimary $transitionFunctionPrimary;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &.current,
+      &:hover {
+        background: $colorBluePrimary;
+        color: $colorLightPrimary;
+      }
+
+      &:before {
+        font-family: "fontawesome";
+      }
+
+      &.navigation_first:before {
+        content: "\f100";
+      }
+
+      &.navigation_prev:before {
+        content: "\f104";
+      }
+
+      &.navigation_next:before {
+        content: "\f105";
+      }
+
+      &.navigation_last:before {
+        content: "\f101";
+      }
+    }
+  }
+}

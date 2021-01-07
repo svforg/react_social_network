@@ -1,8 +1,9 @@
 import React from "react";
-import css from './Settings.module.css';
 
-export function Settings(props: any) {
+export const Settings: React.FC = (
+    {}
+) => {
     return (
-       <>Settings</>
+        <>Settings</>
     );
-}
+};

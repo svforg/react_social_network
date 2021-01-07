@@ -1,39 +1,36 @@
 import React from "react";
-import css from './Dialogs.module.css';
-import {Message} from "./Message/Message";
-import {Person} from "./Person/Person";
+import css from './Dialogs.module.scss';
+import {Persons} from "./Persons/Persons";
+import {Messages} from "./Messages/Messages";
+import {DialogsType} from "../../../redux/reducers/dialogsReducer";
 
-type PersonPropsType = {
-    id: number
-    name: string
-}
-type MessagePropsType = {
-    text: string
-}
 type DialogsPropsType = {
-    persons: Array<PersonPropsType>
-    messages: Array<MessagePropsType>
+    dialogs: DialogsType
+    addDialogMessage: () => void
+    addDialogMessageText: (messageText: string) => void
 }
 
-export function Dialogs(props: DialogsPropsType) {
-
-    let personElements = props.persons
-        .map(person => <Person id={person.id} name={person.name} /> );
-    let messageElements = props.messages
-        .map(message => <Message text={message.text}/> );
-
+export const Dialogs: React.FC<DialogsPropsType> = React.memo((
+    {
+        dialogs,
+        addDialogMessage,
+        addDialogMessageText,
+    }
+) => {
     return (
         <div className={css.dialogs}>
 
-            <div className={css.listName}>
-                { personElements }
-            </div>
+            <Persons
+                state={dialogs.persons}/>
 
-            <div className={css.listMessage}>
-                { messageElements }
-            </div>
+            <Messages
+                addDialogMessage={addDialogMessage}
+                addDialogMessageText={addDialogMessageText}
+                messageText={dialogs.messageText}
+                state={dialogs.messages}/>
         </div>
     );
-}
+});
+
 
 

@@ -1,0 +1,29 @@
+.scroll-top {
+  display: none;
+  position: fixed;
+  left: 20px;
+  bottom: 50px;
+
+  &__button {
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    box-shadow: none!important;
+    background: $colorBluePrimary;
+    opacity: 0.3;
+    transition: background $transitionDurationPrimary $transitionFunctionPrimary;
+
+    i {
+      color: $colorLightPrimary;
+
+      &:before {
+        transform: rotate(90deg);
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

@@ -1,8 +1,10 @@
 import React from "react";
-import css from './Music.module.css';
 
-export function Music(props: any) {
+export const Music: React.FC = (
+    {}
+) => {
     return (
-       <>Music</>
+        <>Music</>
     );
-}
+};
+

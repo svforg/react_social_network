@@ -1,0 +1,176 @@
+@import '../mixins/mq';
+
+html {
+  color: $colorDarkPrimary;
+  font-weight: normal;
+  font-size: 100%;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+
+  @media only screen and ($laptopsMax) {
+    font-size: 95%;
+  }
+
+  @media only screen and ($largeTabletsMax) {
+    font-size: 93%;
+  }
+
+  @media only screen and ($smallTabletsMax) {
+    font-size: 88%;
+  }
+
+  @media only screen and ($phonesMax) {
+    font-size: 86%;
+  }
+}
+
+body {
+  font-family: $mainFont, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+h1, .h1 {
+  margin: $step9 0 26px 0;
+  font-size: $size36px;
+  font-family: $secondFont;
+
+  @include mq($until: mobileMax) {
+    margin: $step6 0 $step3 0;
+    font-size: $size24px;
+  }
+}
+
+h2, .h2 {
+  margin: $step3 0 14px 0;
+  font-size: $size32px;
+  font-family: $secondFont;
+
+  @include mq($until: mobileMax) {
+    margin: $step2 0 $step1 0;
+    font-size: $size20px;
+  }
+}
+
+h3, .h3 {
+  margin: $step3 0 14px 0;
+  font-size: $size26px;
+  font-family: $secondFont;
+
+  @include mq($until: mobileMax) {
+    margin: $step2 0 $step1 0;
+    font-size: $size18px;
+  }
+}
+
+h4, .h4 {
+  margin: $step3 0 14px 0;
+  font-size: $size22px;
+  font-family: $secondFont;
+
+  @include mq($until: mobileMax) {
+    margin: $step2 0 $step1 0;
+    font-size: $size16px;
+  }
+}
+
+h5, .h5 {
+  margin: $step3 0 14px 0;
+  font-size: $size24px;
+  font-family: $mainFont;
+
+  @include mq($until: mobileMax) {
+    margin: $step2 0 $step1 0;
+    font-size: $size18px;
+  }
+}
+
+h6, .h6 {
+  margin: $step3 0 14px 0;
+  font-size: $size18px;
+  font-family: $thirdFont;
+
+  @include mq($until: mobileMax) {
+    margin: $step2 0 $step1 0;
+    font-size: $size16px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  display: block;
+  font-weight: bold;
+
+  &:first-child {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}
+
+.hero__headline {
+  display: block;
+  margin: $step9 0 26px 0;
+  font-size: $size42px;
+  font-family: $secondFont;
+
+  line-height: 1.3;
+  @include mq($until: mobileMax) {
+    margin: $step6 0 $step3 0;
+    font-size: $size26px;
+  }
+}
+
+strong {
+  font-family: $secondFont;
+}
+
+small {
+  margin: $step2 0;
+  font-size: $size14px;
+}
+
+p {
+  margin: 14px 0;
+  @include mq($until: mobileMax) {
+    margin: $step1 0;
+    font-size: $size26px;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  margin: 0;
+  padding: 0;
+}
+a, a:active, a:visited {
+  position: relative;
+  color: $colorBluePrimary;
+  text-decoration: none;
+  transition: color $transitionDurationPrimary $transitionFunctionPrimary;
+}
+a:hover {
+  color: $colorBlueSecondary;
+}
+
+li {
+  list-style-type: none;
+}

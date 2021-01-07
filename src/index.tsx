@@ -1,18 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import state from "./redux/state";
+import React from 'react';
+import './index.scss';
+import {store} from "./redux/store";
+import ReactDOM from "react-dom";
+import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
+import App from "./App";
 
-let posts = state.profile.posts;
-let persons = state.dialogs.persons;
-let messages  = state.dialogs.messages;
-let sidebarItems  = state.sidebar.sidebarItems;
+let reRenderEntireTree = () => {
+    ReactDOM.render(
+        <Provider store={store}>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
+        </Provider>, document.getElementById('root')
+    );
+};
 
-ReactDOM.render(<App sidebarItems={sidebarItems} posts={posts} persons={persons} messages={messages} />,  document.getElementById('root'));
+reRenderEntireTree();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+store.subscribe(reRenderEntireTree);
+
 serviceWorker.unregister();
