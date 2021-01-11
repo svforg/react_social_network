@@ -24,12 +24,20 @@ html {
   }
 }
 
+$colorBodyText: #8c91b6;
 body {
+  color: $colorBodyText;
+  font-weight: 400;
   font-family: $mainFont, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  a {
+    color: $colorBodyText;
+  }
 }
 
 code {

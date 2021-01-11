@@ -1,9 +1,7 @@
 import React from "react";
 import css from './User.module.scss';
 
-const UserMemo: React.FC = (
-    {}
-) => {
+export const User: React.FC = () => {
     return (
         <div className={css.user}>
 
@@ -20,5 +18,3 @@ const UserMemo: React.FC = (
         </div>
     );
 };
-
-export const User = React.memo(UserMemo);

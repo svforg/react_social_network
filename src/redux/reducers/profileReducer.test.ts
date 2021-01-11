@@ -1,4 +1,4 @@
-import profileReducer, {ProfileType} from "./profileReducer";
+import {ProfileType, profileReducer} from "./profileReducer";
 import {addProfilePostAC} from "../actions/profileActions";
 
 test('correct task should be deleted from correct array', () => {

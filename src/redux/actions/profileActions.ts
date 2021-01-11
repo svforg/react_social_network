@@ -1,15 +1,16 @@
 import {v1} from "uuid";
-import {ADD_PROFILE_POST, ADD_PROFILE_POST_TEXT} from "../constants/profileConstants";
+import {PROFILE_TYPES} from "../constats/profileConstats";
+
 
 export type ActionsProfileType =
     ReturnType<typeof addProfilePostAC> |
     ReturnType<typeof addProfilePostTextAC>
 
 export const addProfilePostAC = () => ({
-    type: ADD_PROFILE_POST,
+    type: PROFILE_TYPES.ADD_PROFILE_POST,
     postId: v1(),
 } as const);
 export const addProfilePostTextAC = (postText: string) => ({
-    type: ADD_PROFILE_POST_TEXT,
-    postText: postText,
+    type: PROFILE_TYPES.ADD_PROFILE_POST_TEXT,
+    postText
 } as const);

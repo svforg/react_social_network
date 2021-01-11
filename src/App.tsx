@@ -2,17 +2,16 @@ import React from 'react';
 import './App.scss';
 import {Header} from "./components/Header/Header";
 import {Main} from "./components/Main/Main";
-import {SidebarContainer} from "./components/Sidebar/SidebarContainer";
 
 const App: React.FC = () => {
 
     return (
-        <div className="app-wrapper">
+        <div className="app-inner">
             <Header/>
 
-            <SidebarContainer/>
-
-            <Main/>
+            <div className="wrapper">
+                <Main/>
+            </div>
         </div>
     );
 };

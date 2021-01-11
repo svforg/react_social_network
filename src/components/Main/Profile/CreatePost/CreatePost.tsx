@@ -17,7 +17,10 @@ const CreatePostMemo: React.FC<CreatePostType> = (
     }
 ) => {
     const buttonClickCallback = () => addProfilePost();
-    const textAreaChangeCallBack = (e: ChangeEvent<HTMLTextAreaElement>) => addProfilePostText(e.currentTarget.value);
+    const textAreaChangeCallBack = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        debugger
+        addProfilePostText(e.currentTarget.value)
+    };
 
     return (
         <form className={css.form}>

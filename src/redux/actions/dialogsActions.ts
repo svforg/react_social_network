@@ -1,4 +1,4 @@
-import {ADD_DIALOG_MESSAGE, ADD_DIALOG_MESSAGE_TEXT} from "../constants/dialogsConstants";
+import {DIALOGS_TYPES} from "../constats/dialogsConstats";
 
 export type ActionDialogsType =
     ReturnType<typeof addDialogMessageAC>
@@ -6,9 +6,9 @@ export type ActionDialogsType =
 
 
 export const addDialogMessageAC = () => ({
-    type: ADD_DIALOG_MESSAGE
+    type: DIALOGS_TYPES.ADD_DIALOG_MESSAGE
 } as const);
 export const addDialogMessageTextAC = (messageText: string) => ({
-    type: ADD_DIALOG_MESSAGE_TEXT,
-    messageText: messageText,
+    type: DIALOGS_TYPES.ADD_DIALOG_MESSAGE_TEXT,
+    messageText
 } as const);

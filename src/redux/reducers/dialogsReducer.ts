@@ -1,4 +1,4 @@
-import {ADD_DIALOG_MESSAGE, ADD_DIALOG_MESSAGE_TEXT} from "../constants/dialogsConstants";
+import {DIALOGS_TYPES} from "../constats/dialogsConstats";
 import {ActionDialogsType} from "../actions/dialogsActions";
 
 export type PersonsType = {
@@ -34,30 +34,23 @@ let initialState = {
 
 export const dialogsReducer = (state: DialogsType = initialState, action: ActionDialogsType): DialogsType => {
 
-    let prepareString = (string: string) => string.replace(/\s+/g, ' ').trim();
-
     switch (action.type) {
-        case ADD_DIALOG_MESSAGE:
-            if (prepareString(state.messageText) !== "") {
-                let newMessage: MessagesType = {
-                    id: 5,
-                    text: state.messageText,
-                };
-                state.messages.push(newMessage);
-                state.messageText = "";
-                return {...state};
-            }
-            break;
 
-        case ADD_DIALOG_MESSAGE_TEXT:
-            if (prepareString(action.messageText) !== "") {
-                state.messageText = action.messageText;
-                return {...state};
-            }
+        case DIALOGS_TYPES.ADD_DIALOG_MESSAGE:
+            return prepareString(state.messageText)
+                ? {
+                    ...state,
+                    messageText: "",
+                    messages: [...state.messages, { id: 5, text: state.messageText }],
+                  }
+                : state;
 
-            break;
+        case DIALOGS_TYPES.ADD_DIALOG_MESSAGE_TEXT:
+            return prepareString(action.messageText) ? {...state, messageText: action.messageText} : state;
+
+        default:
+            return state;
     }
-
-    return state;
 };
 
+let prepareString = (string: string) => string.replace(/\s+/g, ' ').trim();

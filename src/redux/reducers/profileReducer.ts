@@ -1,5 +1,6 @@
-import {ADD_PROFILE_POST, ADD_PROFILE_POST_TEXT} from "../constants/profileConstants";
+
 import {ActionsProfileType} from "../actions/profileActions";
+import {PROFILE_TYPES} from "../constats/profileConstats";
 
 export type ProfilePostType = {
     id: string
@@ -20,38 +21,25 @@ let initialState = {
     postText: "",
 };
 
-const profileReducer = (state:ProfileType = initialState, action: ActionsProfileType): ProfileType => {
+export const profileReducer = (state:ProfileType = initialState, action: ActionsProfileType): ProfileType => {
+
     switch (action.type) {
-        case ADD_PROFILE_POST: {
 
-            let copyState = {...state};
-            if (prepareString(copyState.postText) !== "") {
-                let newPost: ProfilePostType = {
-                    id: action.postId,
-                    text: copyState.postText,
-                    like: 0,
-                };
-                copyState.posts = [...copyState.posts, newPost];
-                copyState.postText = "";
-                return copyState;
-            }
-            break;
-        }
+        case PROFILE_TYPES.ADD_PROFILE_POST:
+            return prepareString(state.postText)
+                ? {
+                    ...state,
+                    postText: "",
+                    posts: [...state.posts, { id: action.postId, text: state.postText, like: 0 }]
+                  }
+                : state;
 
-        case ADD_PROFILE_POST_TEXT: {
+        case PROFILE_TYPES.ADD_PROFILE_POST_TEXT:
+            return prepareString(action.postText) ? { ...state, postText: action.postText} : state;
 
-            if (prepareString(action.postText) !== "") {
-                state.postText = action.postText;
-                return {...state};
-            }
-
-            break;
-        }
+        default:
+            return state;
     }
-
-    return state;
 };
 
 let prepareString = (string: string) => string.replace(/\s+/g, ' ').trim();
-
-export default profileReducer;

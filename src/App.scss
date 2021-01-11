@@ -35,28 +35,7 @@
   --iq-border-dark: #252e4b;
 }
 
-body {
-  padding: 0;
-  margin: 0;
-  color: var(--iq-dark-body-text);
-  background: var(--iq-dark-bg);
-  font-weight: 400;
-  font-style: normal;
-}
 
-body a {
-  color: var(--iq-dark-body-text);
-}
-
-.app-wrapper {
-  display: grid;
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
-  grid-template-areas:
-  "header header"
-  "sidebar main";
-}
 
 /* scroller */
 .scroller { overflow-y: auto; scrollbar-color: var(--iq-primary) var(--iq-dark-primary); scrollbar-width: thin; }

@@ -13,7 +13,7 @@ const PostsMemo: React.FC<PostsPropsType> = (
     }
 ) => {
 
-    const postElements = state
+    const postElements = state && state
         .map(post => <Post key={post.id} text={post.text} like={post.like}/>);
 
     return (

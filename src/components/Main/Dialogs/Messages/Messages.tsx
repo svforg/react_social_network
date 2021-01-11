@@ -19,7 +19,7 @@ const MessagesMemo: React.FC<MessagesPropsType> = (
         messageText
     }
 ) => {
-    const messageElements = state
+    const messageElements = state && state
         .map((message: MessagesType) => <Message text={message.text}/>);
 
     return (

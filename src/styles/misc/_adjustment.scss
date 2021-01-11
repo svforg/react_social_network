@@ -13,8 +13,11 @@ html.scroll-disable {
     overflow: hidden;
   }
 }
-
-.site-inner {
+$colorBodyBG:  #182039;
+body {
+  background: $colorBodyBG;
+}
+.app-inner {
   display: flex;
   flex-direction: column;
 

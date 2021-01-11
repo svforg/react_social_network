@@ -1,8 +1,13 @@
 .main {
-    grid-area: main;
+    display: grid;
+    grid-gap: 16px;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "sidebar content";
+    grid-template-columns: 3fr 9fr;
+}
 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 30px;
+.content {
+    grid-area: content;
+    padding-top: 16px;
 }

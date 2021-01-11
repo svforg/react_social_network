@@ -1,0 +1,38 @@
+.card {
+    margin-bottom: 16px;
+    background: #1e2745;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(44, 101, 144, 0.1);
+}
+.coverContainer {
+    position: relative;
+}
+.coverImg {
+    border-radius: 5px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+.userContainer {
+    padding: 1.5em;
+}
+.userDetails {
+    display: flex!important;
+}
+.userImgInner {
+    position: relative;
+    margin-top: -70px;
+    margin-right: 1.5rem!important;
+}
+.userImg {
+    width: 130px;
+    max-width: 100%;
+    height: auto;
+    font-size: 1.6rem;
+    line-height: 130px;
+    border: 1px solid  #252e4b;
+    border-radius: 50%;
+}

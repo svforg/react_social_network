@@ -1,22 +1,18 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {AppStoreType} from "../../../redux/store";
-import {ProfileType} from "../../../redux/reducers/profileReducer";
+import {connect} from "react-redux";
 import {addProfilePostAC, addProfilePostTextAC} from "../../../redux/actions/profileActions";
 import {Profile} from "./Profile";
 
-export const ProfileContainer: React.FC = () => {
-
-    const profile = useSelector<AppStoreType, ProfileType>(state => state.profile);
-    const dispatch = useDispatch();
-
-    const addProfilePost = () => dispatch(addProfilePostAC());
-    const addProfilePostText = (title: string) => dispatch(addProfilePostTextAC(title));
-
-    return (
-        <Profile
-            addProfilePost={addProfilePost}
-            addProfilePostText={addProfilePostText}
-            profile={profile}/>
-    );
+const mapStateToProps = (state: any): any => {
+    return {
+        profile: state.profileReducer
+    }
 };
+const mapDispatchToProps = (dispatch: any): any => {
+    return {
+        addProfilePost: () => dispatch(addProfilePostAC()),
+        addProfilePostText: (title: string) => dispatch(addProfilePostTextAC(title)),
+    }
+};
+
+export const ProfileContainer: any = connect(mapStateToProps, mapDispatchToProps)(Profile);
