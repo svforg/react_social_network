@@ -36,7 +36,7 @@ export const usersReducer = (state: UsersState = initialState, action: UsersACTy
             let stateCopy = {...state, users: state.users};
 
             let newUsers = stateCopy.users.map(user =>
-                (user.id === action.payload.userId) ? {...user, followed: true} : user );
+                (user.id === action.payload.userId) ? {...user, followed: true} : user);
 
             return {...stateCopy, users: newUsers};
         }
@@ -45,25 +45,29 @@ export const usersReducer = (state: UsersState = initialState, action: UsersACTy
             let stateCopy = {...state, users: state.users};
 
             let newUsers = stateCopy.users.map(user =>
-                (user.id === action.payload.userId) ? {...user, followed: false} : user );
+                (user.id === action.payload.userId) ? {...user, followed: false} : user);
 
             return {...stateCopy, users: newUsers};
         }
 
         case USERS_TYPES.SHOW_NEXT_USERS:
-            return {...state, users: [...action.payload.users]};
+            return (Array.isArray(action.payload.users) && action.payload.users.length)
+                ? {...state, users: [...action.payload.users]}
+                : state;
 
         case USERS_TYPES.SHOW_MORE_USERS:
-            return {...state, users: [...state.users, ...action.payload.users]};
+            return (Array.isArray(action.payload.users) && action.payload.users.length)
+                ? {...state, users: [...state.users, ...action.payload.users]}
+                : state;
 
         case USERS_TYPES.SET_CURRENT_PAGE:
-            return  {...state, currentPage: action.payload.page};
+            return action.payload.page ? {...state, currentPage: action.payload.page} : state;
 
         case USERS_TYPES.SET_TOTAL_COUNT:
-            return  {...state, totalCount: action.payload.totalCount};
+            return action.payload.totalCount ? {...state, totalCount: action.payload.totalCount} : state;
 
         case USERS_TYPES.TOGGLE_IS_FETCHING:
-            return  {...state, isFetching: action.payload.isFetching};
+            return action.payload.isFetching ? {...state, isFetching: action.payload.isFetching} : state;
 
         default:
             return state;

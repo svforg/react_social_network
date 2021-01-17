@@ -9,18 +9,15 @@ type CreatePostType = {
     addProfilePostText: (title: string) => void
 }
 
-const CreatePostMemo: React.FC<CreatePostType> = (
-    {
+const CreatePostMemo: React.FC<CreatePostType> = props => {
+
+    const {
         state,
-        addProfilePost,
-        addProfilePostText,
-    }
-) => {
+            addProfilePost,
+            addProfilePostText,
+    } = props;
     const buttonClickCallback = () => addProfilePost();
-    const textAreaChangeCallBack = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        debugger
-        addProfilePostText(e.currentTarget.value)
-    };
+    const textAreaChangeCallBack = (e: ChangeEvent<HTMLTextAreaElement>) => addProfilePostText(e.currentTarget.value);
 
     return (
         <form className={css.form}>

@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {addProfilePostAC, addProfilePostTextAC} from "../../../redux/actions/profileActions";
 import {Profile} from "../../../components/Main/Profile/Profile";
 import {selectProfile} from "../../../redux/selectors/profileSelectors";
-import {useProfileDispatch as useDispatch} from "../../../redux/actions/profileActions";
+import {useDispatch} from "../../../redux/useDispatchHOC";
 
 export const ProfileContainer: React.FC = () => {
     const profile = useSelector(selectProfile);

@@ -20,7 +20,7 @@ const MessagesMemo: React.FC<MessagesPropsType> = (
     }
 ) => {
     const messageElements = state && state
-        .map((message: MessagesType) => <Message text={message.text}/>);
+        .map((message: MessagesType, index: number) => <Message key={index} text={message.text}/>);
 
     return (
         <div className={css.listMessage}>

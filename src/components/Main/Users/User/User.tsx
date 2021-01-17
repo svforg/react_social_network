@@ -9,13 +9,13 @@ type UserPropsType = {
     followUser: (userId: string) => void
 }
 
-export const User: React.FC<UserPropsType> = React.memo((
-    {
+export const User: React.FC<UserPropsType> = React.memo(props => {
+
+    const  {
         user,
         unFollowUser,
         followUser,
-    }
-) => {
+    } = props;
 
     let userSmPhoto = user.photos.small !== null
         ? user.photos.small
@@ -28,7 +28,7 @@ export const User: React.FC<UserPropsType> = React.memo((
     let userStatus = user.status !== null ? user.status : "@designer";
 
     return (
-        <li className={css.card}>
+        <li key={user.id} className={css.card}>
             <div className={css.coverContainer}>
                 <img
                     className={css.coverImg}

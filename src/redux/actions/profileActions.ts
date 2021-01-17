@@ -1,7 +1,5 @@
 import {v1} from "uuid";
 import {PROFILE_TYPES} from "../constats/profileConstats";
-import {useDispatch as _useDispatch} from "react-redux";
-import {DialogsACType} from "./dialogsActions";
 
 export type ProfileACType =
     ReturnType<typeof addProfilePostAC> |
@@ -13,10 +11,5 @@ export const addProfilePostAC = () => ({
 } as const);
 export const addProfilePostTextAC = (postText: string) => ({
     type: PROFILE_TYPES.ADD_PROFILE_POST_TEXT,
-     payload: {postText}
+    payload: {postText}
 } as const);
-
-export function useProfileDispatch() {
-    const dispatch = _useDispatch();
-    return (ActionCreator: ProfileACType) => dispatch(ActionCreator);
-}

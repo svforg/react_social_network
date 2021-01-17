@@ -38,8 +38,8 @@ export const Users: React.FC<UsersPropsType> = (
 
         return (
             currentPage === pagesIndex
-                ? <strong>{pagesIndex}-</strong>
-                : <small onClick={loadNext}>{pagesIndex}-</small>
+                ? <strong key={pagesIndex}>{pagesIndex}-</strong>
+                : <small key={pagesIndex} onClick={loadNext}>{pagesIndex}-</small>
         )
     });
 
@@ -67,10 +67,10 @@ export const Users: React.FC<UsersPropsType> = (
             </div>
             <Grid container item xs={12} spacing={2}>
                 <React.Fragment>
-                    <Grid key="1" item xs={6}>
+                    <Grid item xs={6}>
                         <ul>{leftColumn}</ul>
                     </Grid>
-                    <Grid key="2" item xs={6}>
+                    <Grid item xs={6}>
                         <ul>{rightColumn}</ul>
                     </Grid>
                 </React.Fragment>

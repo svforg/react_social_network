@@ -13,7 +13,7 @@ export const Persons: React.FC<PersonsPropsType> = React.memo((
     }
 ) => {
     const personElements = state && state
-        .map((person: PersonsType) => <Person id={person.id} name={person.name}/>);
+        .map((person: PersonsType) => <Person key={person.id} id={person.id} name={person.name}/>);
 
     return (
         <div className={css.listName}>

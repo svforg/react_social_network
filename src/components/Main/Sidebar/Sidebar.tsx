@@ -13,7 +13,7 @@ export const Sidebar: React.FC<SidebarPropsType> = React.memo((
 ) => {
 
     const sidebarElements = sidebar && sidebar
-        .map((sidebarItem: SidebarType) => <Item sidebarItem={sidebarItem}/>);
+        .map((sidebarItem: SidebarType, index: number) => <Item key={index} sidebarItem={sidebarItem}/>);
 
     return (
         <aside className={css.sidebar}>

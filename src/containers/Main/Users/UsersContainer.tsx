@@ -50,6 +50,7 @@ class UsersContainer extends React.Component<TProps> {
             .then(response => {
                 this.props.toggleIsFetchingAC(false);
                 this.props.showNextUsersAC(response.data.items);
+                //this.props.showMoreUsersAC(response.data.items);
             });
     };
 
