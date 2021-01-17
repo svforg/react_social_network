@@ -1,4 +1,4 @@
-import {UsersACTypes} from "../actions/usersActions";
+import {UsersACType} from "../actions/usersActions";
 import {USERS_TYPES} from "../constats/usersConstats";
 
 export type UsersPhotosType = {
@@ -28,7 +28,7 @@ let initialState = {
     isFetching: false,
 };
 
-export const usersReducer = (state: UsersState = initialState, action: UsersACTypes): UsersState => {
+export const usersReducer = (state: UsersState = initialState, action: UsersACType): UsersState => {
 
     switch (action.type) {
 

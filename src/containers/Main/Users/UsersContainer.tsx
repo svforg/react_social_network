@@ -1,66 +1,60 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import axios from "axios";
 import {
     followUserAC,
     setCurrentPageAC,
     setTotalCountAC, showMoreUsersAC,
     showNextUsersAC, toggleIsFetchingAC,
-    unFollowUserAC, useDispatch
+    unFollowUserAC
 } from "../../../redux/actions/usersActions";
 import {Users} from "../../../components/Main/Users/Users";
 import {PreLoader} from "../../../components/ui-elements/PreLoader/PreLoader";
-import {selectAll, selectPageSize} from "../../../redux/selectors/usersSelectors";
+import {UsersState} from "../../../redux/reducers/usersReducer";
 
-
-export class UsersContainer extends React.Component {
+class UsersContainer extends React.Component<TProps> {
 
     componentDidMount() {
-        const {currentPage, pageSize} = useSelector(selectAll);
-        const dispatch = useDispatch();
+        const {currentPage, pageSize} = this.props;
 
-        dispatch(toggleIsFetchingAC(true));
+        this.props.toggleIsFetchingAC(true);
 
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
             .then(response => {
-                dispatch(toggleIsFetchingAC(false));
-                dispatch(showMoreUsersAC(response.data.items));
-                //dispatch(setTotalCount(response.data.totalCount));
-                dispatch(setTotalCountAC(200));
+                this.props.toggleIsFetchingAC(false);
+                this.props.showMoreUsersAC(response.data.items);
+                //this.props.setTotalCountAC(response.data.totalCount);
+                this.props.setTotalCountAC(200);
             });
     };
 
-    componentDidUpdate() {
-    };
-
     loadMoreCallback = (pagesIndex: number) => {
-        const pageSize = useSelector(selectPageSize);
-        const dispatch = useDispatch();
-        dispatch(setCurrentPageAC(pagesIndex));
+        const pageSize = this.props;
+        this.props.setCurrentPageAC(pagesIndex);
+
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${pagesIndex}`)
             .then(response => {
-                dispatch(showMoreUsersAC(response.data.items));
+                this.props.showMoreUsersAC(response.data.items);
             });
     };
 
     loadNextCallback = (pagesIndex: number) => {
-        const dispatch = useDispatch();
-        const pageSize = useSelector(selectPageSize);
+        const pageSize = this.props;
 
-        dispatch(toggleIsFetchingAC(true));
-        dispatch(setCurrentPageAC(pagesIndex));
+        this.props.toggleIsFetchingAC(true);
+        this.props.setCurrentPageAC(pagesIndex);
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${pagesIndex}`)
             .then(response => {
-                dispatch(toggleIsFetchingAC(false));
-                dispatch(showNextUsersAC(response.data.items));
+                this.props.toggleIsFetchingAC(false);
+                this.props.showNextUsersAC(response.data.items);
             });
     };
 
-    followUserCallback = () => followUserAC;
-    unFollowUserCallback = () => unFollowUserAC;
+    followUserCallback = (userId: string) => this.props.followUserAC(userId);
+    unFollowUserCallback = (userId: string) => this.props.unFollowUserAC(userId);
 
     render() {
 
@@ -70,24 +64,45 @@ export class UsersContainer extends React.Component {
             currentPage,
             pageSize,
             totalCount,
-        } = useSelector(selectAll);
+        } = this.props;
 
         return (
-            <>
-                {
-                    isFetching
-                        ? <PreLoader/>
-                        : <Users
-                            users={users}
-                            currentPage={currentPage}
-                            pageSize={pageSize}
-                            totalCount={totalCount}
-                            unFollowUser={this.unFollowUserCallback}
-                            loadNextCallback={this.loadNextCallback}
-                            loadMoreCallback={this.loadMoreCallback}
-                            followUser={this.followUserCallback}/>
-                }
-            </>
-        );
+            isFetching
+            ? <PreLoader/>
+            : <Users
+                users={users}
+                currentPage={currentPage}
+                pageSize={pageSize}
+                totalCount={totalCount}
+                unFollowUser={this.unFollowUserCallback}
+                loadNextCallback={this.loadNextCallback}
+                loadMoreCallback={this.loadMoreCallback}
+                followUser={this.followUserCallback}/>
+
+        )
     }
 }
+
+const mapStateToProps = ({users}: { users: UsersState }): UsersState => {
+    return {
+        users: users.users,
+        isFetching: users.isFetching,
+        currentPage: users.currentPage,
+        pageSize: users.pageSize,
+        totalCount: users.totalCount
+    }
+};
+
+const connector = connect(mapStateToProps, {
+    followUserAC,
+    unFollowUserAC,
+    showNextUsersAC,
+    showMoreUsersAC,
+    setCurrentPageAC,
+    toggleIsFetchingAC,
+    setTotalCountAC,
+});
+
+type TProps = ConnectedProps<typeof connector>;
+
+export default connector(UsersContainer);

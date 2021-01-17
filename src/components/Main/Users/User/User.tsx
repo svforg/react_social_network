@@ -19,11 +19,11 @@ export const User: React.FC<UserPropsType> = React.memo((
 
     let userSmPhoto = user.photos.small !== null
         ? user.photos.small
-        : "/soc_network/images/user/05.jpg";
+        : "/react_social_network/images/user/05.jpg";
 
     let userLgPhoto = user.photos.large !== null
         ? user.photos.large
-        : "/soc_network/images/page-img/profile-bg1.jpg";
+        : "/react_social_network/images/page-img/profile-bg1.jpg";
 
     let userStatus = user.status !== null ? user.status : "@designer";
 

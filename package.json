@@ -1,6 +1,6 @@
 {
-  "name": "social-network",
-  "homepage": "https://svforg.github.io/soc_network/",
+  "name": "react_social_network",
+  "homepage": "https://svforg.github.io/react_social_network/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,5 +1,5 @@
 
-import {ActionsProfileType} from "../actions/profileActions";
+import {ProfileACType} from "../actions/profileActions";
 import {PROFILE_TYPES} from "../constats/profileConstats";
 
 export type ProfilePostType = {
@@ -21,25 +21,25 @@ let initialState = {
     postText: "",
 };
 
-export const profileReducer = (state:ProfileType = initialState, action: ActionsProfileType): ProfileType => {
+export const profileReducer = (state:ProfileType = initialState, action: ProfileACType): ProfileType => {
 
     switch (action.type) {
 
         case PROFILE_TYPES.ADD_PROFILE_POST:
-            return prepareString(state.postText)
+            return state.postText
                 ? {
                     ...state,
                     postText: "",
-                    posts: [...state.posts, { id: action.postId, text: state.postText, like: 0 }]
+                    posts: [...state.posts, { id: action.payload.postId, text: state.postText, like: 0 }]
                   }
                 : state;
 
         case PROFILE_TYPES.ADD_PROFILE_POST_TEXT:
-            return prepareString(action.postText) ? { ...state, postText: action.postText} : state;
+            return action.payload.postText ? { ...state, postText: action.payload.postText} : state;
 
         default:
             return state;
     }
 };
 
-let prepareString = (string: string) => string.replace(/\s+/g, ' ').trim();
+//let prepareString = (string: string) => string.replace(/\s+/g, ' ').trim();

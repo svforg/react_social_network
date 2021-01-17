@@ -1,5 +1,5 @@
 import {DIALOGS_TYPES} from "../constats/dialogsConstats";
-import {ActionDialogsType} from "../actions/dialogsActions";
+import {DialogsACType} from "../actions/dialogsActions";
 
 export type PersonsType = {
     id: number
@@ -32,12 +32,12 @@ let initialState = {
     messageText: "",
 };
 
-export const dialogsReducer = (state: DialogsType = initialState, action: ActionDialogsType): DialogsType => {
+export const dialogsReducer = (state: DialogsType = initialState, action: DialogsACType): DialogsType => {
 
     switch (action.type) {
 
         case DIALOGS_TYPES.ADD_DIALOG_MESSAGE:
-            return prepareString(state.messageText)
+            return state.messageText
                 ? {
                     ...state,
                     messageText: "",
@@ -46,11 +46,10 @@ export const dialogsReducer = (state: DialogsType = initialState, action: Action
                 : state;
 
         case DIALOGS_TYPES.ADD_DIALOG_MESSAGE_TEXT:
-            return prepareString(action.messageText) ? {...state, messageText: action.messageText} : state;
+            return action.payload.messageText ? {...state, messageText: action.payload.messageText} : state;
 
         default:
             return state;
     }
 };
 
-let prepareString = (string: string) => string.replace(/\s+/g, ' ').trim();
