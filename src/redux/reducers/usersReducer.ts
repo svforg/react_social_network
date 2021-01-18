@@ -51,12 +51,12 @@ export const usersReducer = (state: UsersState = initialState, action: UsersACTy
         }
 
         case USERS_TYPES.SHOW_NEXT_USERS:
-            return (Array.isArray(action.payload.users) && action.payload.users.length)
+            return Array.isArray(action.payload.users) && action.payload.users.length
                 ? {...state, users: [...action.payload.users]}
                 : state;
 
         case USERS_TYPES.SHOW_MORE_USERS:
-            return (Array.isArray(action.payload.users) && action.payload.users.length)
+            return Array.isArray(action.payload.users) && action.payload.users.length
                 ? {...state, users: [...state.users, ...action.payload.users]}
                 : state;
 

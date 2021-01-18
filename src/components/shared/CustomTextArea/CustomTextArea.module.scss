@@ -1,0 +1,21 @@
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.label {
+    display: block;
+}
+.labelTitle {
+    display: inline-block;
+    margin-bottom: .5rem;
+    color: var(--iq-dark-title-text);
+}
+.inputField {
+    display: block;
+    min-height: 56px;
+    padding: .375rem .75rem;
+    background: transparent;
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}

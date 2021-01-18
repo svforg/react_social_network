@@ -4,7 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import {store} from "./redux/store";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
-import App from "./App";
+import {App} from "./App";
 import './index.scss';
 
 let reRenderEntireTree = () => {

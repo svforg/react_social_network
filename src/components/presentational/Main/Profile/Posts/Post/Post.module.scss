@@ -1,0 +1,46 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding: 16px 24px;
+    background: var(--iq-dark-box);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 20px 0 rgba(44, 101, 144, 0.1);
+}
+
+.user {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ava {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.pic {
+    width: 100%;
+    object-fit: cover;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.like {
+    display: flex;
+    align-items: stretch;
+}
+.pic {
+    margin-right: 10px;
+}
+
+
+

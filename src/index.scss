@@ -1,16 +1,5 @@
-//libs
-//@import "styles/vendor/animate";
+@import "scssVars";
+
 @import "styles/vendor/normalize";
 
-//settings
-@import "styles/vars/vars";
-@import "styles/vars/colors";
-@import "styles/vars/sizes";
-@import "styles/vars/breakpoints";
-@import "styles/misc/adjustment";
-//@import "general/misc/convert_font_vw";
-@import "styles/misc/mixin-fonts";
 @import "styles/misc/typo";
-
-@import "styles/elements/button";
-@import "styles/elements/input";

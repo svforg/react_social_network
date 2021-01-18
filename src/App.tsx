@@ -1,19 +1,15 @@
 import React from 'react';
 import './App.scss';
-import {Header} from "./components/Header/Header";
-import {Main} from "./components/Main/Main";
+import {Header} from "./components/presentational/Header/Header";
+import {Main} from "./components/presentational/Main/Main";
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
 
-    return (
-        <div className="app-inner">
-            <Header/>
+    return <div className="app-inner">
+        <Header/>
 
-            <div className="wrapper">
-                <Main/>
-            </div>
+        <div className="wrapper">
+            <Main/>
         </div>
-    );
+    </div>
 };
-
-export default App;
