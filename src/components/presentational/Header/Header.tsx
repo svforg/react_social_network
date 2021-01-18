@@ -1,7 +1,18 @@
 import React from "react";
 import css from './Header.module.scss';
+import {AuthType} from "../../../redux/reducers/authReducer";
 
-export const Header: React.FC = () => {
+type HeaderProps = AuthType;
+
+export const Header: React.FC<HeaderProps> = React.memo(props => {
+
+    const {
+        id,
+        email,
+        login,
+        isAuth
+    } = props;
+
     return <header className={css.header}>
         <div className="wrapper">
             <a className={css.logoLink}
@@ -16,6 +27,12 @@ export const Header: React.FC = () => {
                     Social
                 </span>
             </a>
+
+            {
+                !isAuth
+                ? 'not logged'
+                : login
+            }
         </div>
     </header>
-};
+});

@@ -1,19 +1,17 @@
 import React from "react";
 import {connect, ConnectedProps} from "react-redux";
-import axios from "axios";
 import {
     followUserAC,
     setCurrentPageAC,
     setTotalCountAC, showMoreUsersAC,
-    showNextUsersAC, toggleIsFetchingAC,
+    showNextUsersAC, toggleFollowEventAC, toggleIsFetchingAC,
     unFollowUserAC
 } from "../../../../redux/actions/usersActions";
 import {PreLoader} from "../../../shared/PreLoader/PreLoader";
 import {Users} from "../../../presentational/Main/Users/Users";
 import {UsersState} from "../../../../redux/reducers/usersReducer";
+import {getUsersAPI} from "../../../../api/api";
 
-// классовый компонент создан в целях ознакомления
-// но не в целях нарушения консистентности кода
 class UsersContainer extends React.Component<TProps> {
 
     componentDidMount() {
@@ -21,11 +19,11 @@ class UsersContainer extends React.Component<TProps> {
 
         this.props.toggleIsFetchingAC(true);
 
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
-            .then(response => {
+        getUsersAPI(pageSize, currentPage)
+            .then(data => {
+
                 this.props.toggleIsFetchingAC(false);
-                this.props.showMoreUsersAC(response.data.items);
+                this.props.showMoreUsersAC(data.items);
                 //this.props.setTotalCountAC(response.data.totalCount);
                 this.props.setTotalCountAC(200);
             });
@@ -35,10 +33,9 @@ class UsersContainer extends React.Component<TProps> {
         const pageSize = this.props;
         this.props.setCurrentPageAC(pagesIndex);
 
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${pagesIndex}`)
-            .then(response => {
-                this.props.showMoreUsersAC(response.data.items);
+        getUsersAPI(pageSize, pagesIndex)
+            .then(data => {
+                this.props.showMoreUsersAC(data.items);
             });
     };
 
@@ -47,17 +44,18 @@ class UsersContainer extends React.Component<TProps> {
 
         this.props.toggleIsFetchingAC(true);
         this.props.setCurrentPageAC(pagesIndex);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${pagesIndex}`)
-            .then(response => {
+
+        getUsersAPI(pageSize, pagesIndex)
+            .then(data => {
                 this.props.toggleIsFetchingAC(false);
-                this.props.showNextUsersAC(response.data.items);
+                this.props.showNextUsersAC(data.items);
                 //this.props.showMoreUsersAC(response.data.items);
             });
     };
 
     followUserCallback = (userId: string) => this.props.followUserAC(userId);
     unFollowUserCallback = (userId: string) => this.props.unFollowUserAC(userId);
+    toggleFollowEventCallback = (isFetching: boolean) => this.props.toggleFollowEventAC(isFetching);
 
     render() {
 
@@ -67,6 +65,7 @@ class UsersContainer extends React.Component<TProps> {
             currentPage,
             pageSize,
             totalCount,
+            followEvent,
         } = this.props;
 
         return (
@@ -74,14 +73,15 @@ class UsersContainer extends React.Component<TProps> {
             ? <PreLoader/>
             : <Users
                 users={users}
-                currentPage={currentPage}
                 pageSize={pageSize}
                 totalCount={totalCount}
-                unFollowUser={this.unFollowUserCallback}
+                currentPage={currentPage}
+                followEvent={followEvent}
                 loadNextCallback={this.loadNextCallback}
                 loadMoreCallback={this.loadMoreCallback}
-                followUser={this.followUserCallback}/>
-
+                followUser={this.followUserCallback}
+                unFollowUser={this.unFollowUserCallback}
+                toggleFollowEventCallback={this.toggleFollowEventCallback}/>
         )
     }
 }
@@ -89,21 +89,23 @@ class UsersContainer extends React.Component<TProps> {
 const mapStateToProps = ({users}: { users: UsersState }): UsersState => {
     return {
         users: users.users,
-        isFetching: users.isFetching,
-        currentPage: users.currentPage,
         pageSize: users.pageSize,
-        totalCount: users.totalCount
+        totalCount: users.totalCount,
+        currentPage: users.currentPage,
+        isFetching: users.isFetching,
+        followEvent: users.followEvent,
     }
 };
 
 const connector = connect(mapStateToProps, {
-    followUserAC,
-    unFollowUserAC,
     showNextUsersAC,
     showMoreUsersAC,
+    followUserAC,
+    unFollowUserAC,
     setCurrentPageAC,
-    toggleIsFetchingAC,
     setTotalCountAC,
+    toggleIsFetchingAC,
+    toggleFollowEventAC,
 });
 
 type TProps = ConnectedProps<typeof connector>;

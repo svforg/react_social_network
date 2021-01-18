@@ -18,6 +18,7 @@ export type UsersState = {
     totalCount: number
     currentPage: number
     isFetching: boolean
+    followEvent: boolean
 }
 
 let initialState = {
@@ -26,6 +27,7 @@ let initialState = {
     totalCount: 0,
     currentPage: 1,
     isFetching: false,
+    followEvent: false,
 };
 
 export const usersReducer = (state: UsersState = initialState, action: UsersACType): UsersState => {
@@ -71,6 +73,9 @@ export const usersReducer = (state: UsersState = initialState, action: UsersACTy
                 : state;
 
         case USERS_TYPES.TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.payload.isFetching};
+
+        case USERS_TYPES.TOGGLE_FOLLOW_EVENT:
             return {...state, isFetching: action.payload.isFetching};
 
         default:

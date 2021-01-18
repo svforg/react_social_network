@@ -6,26 +6,29 @@ import {CustomButton} from "../../../shared/CustomButton/CustomButton";
 
 type UsersPropsType = {
     users: Array<UsersType>
-    unFollowUser: (userId: string) => void
-    followUser: (userId: string) => void
+    pageSize: number
+    totalCount: number
+    currentPage: number
+    followEvent: boolean
     loadNextCallback: (pagesIndex: number) => void
     loadMoreCallback: (pagesIndex: number) => void
-    currentPage: number
-    totalCount: number
-    pageSize: number
+    followUser: (userId: string) => void
+    unFollowUser: (userId: string) => void
+    toggleFollowEventCallback: (isFetching: boolean) => void
 }
-
 export const Users: React.FC<UsersPropsType> = React.memo(props => {
 
     const  {
         users,
-        unFollowUser,
-        followUser,
+        pageSize,
+        totalCount,
+        currentPage,
+        followEvent,
         loadNextCallback,
         loadMoreCallback,
-        currentPage,
-        totalCount,
-        pageSize,
+        followUser,
+        unFollowUser,
+        toggleFollowEventCallback,
     } = props;
 
     const propsTotal = !totalCount ? 0 : totalCount;
@@ -49,15 +52,15 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
 
     Array.isArray(users) && users.length &&
         users.map((user: UsersType, index: number) => {
-            index % 2 === 0
-                ? leftColumn.push(<User key={user.id}
-                                        user={user}
-                                        unFollowUser={unFollowUser}
-                                        followUser={followUser}/>)
-                : rightColumn.push(<User key={user.id}
-                                         user={user}
-                                         unFollowUser={unFollowUser}
-                                         followUser={followUser}/>)
+
+            const current = <User key={user.id}
+                                  user={user}
+                                  followEvent={followEvent}
+                                  unFollowUser={unFollowUser}
+                                  toggleFollowEventCallback={toggleFollowEventCallback}
+                                  followUser={followUser}/>;
+
+            index % 2 === 0 ? leftColumn.push(current) : rightColumn.push(current)
         });
 
     const loadMore = () => loadMoreCallback(currentPage + 1);

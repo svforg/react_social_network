@@ -3,20 +3,47 @@ import {NavLink} from "react-router-dom";
 import css from './User.module.scss';
 import {UsersType} from "../../../../../redux/reducers/usersReducer";
 import {CustomButton} from "../../../../shared/CustomButton/CustomButton";
+import axios from "axios";
+import {followUserAPI, unFollowUserAPI} from "../../../../../api/api";
 
 type UserPropsType = {
     user: UsersType
+    followEvent: boolean
     unFollowUser: (userId: string) => void
     followUser: (userId: string) => void
+    toggleFollowEventCallback: (isFetching: boolean) => void
 }
 
 export const User: React.FC<UserPropsType> = React.memo(props => {
 
     const  {
         user,
+        toggleFollowEventCallback,
         unFollowUser,
         followUser,
+        followEvent,
     } = props;
+
+    const followCallback = (userId: string): any => {
+        toggleFollowEventCallback(true);
+
+        followUserAPI(userId)
+            .then(data => {
+                data.resultCode === 0 && followUser(userId);
+                toggleFollowEventCallback(false);
+            });
+    };
+
+    const unFollowCallback = (userId: string): any => {
+        toggleFollowEventCallback(true);
+
+        unFollowUserAPI(userId)
+            .then(data => {
+                data.resultCode === 0 && unFollowUser(userId);
+                toggleFollowEventCallback(false);
+            });
+    };
+
 
     const userSmPhoto = user.photos.small !== null
         ? user.photos.small
@@ -59,8 +86,13 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
 
             {
                 !user.followed
-                    ? <CustomButton onClick={() => followUser(user.id)}>Follow</CustomButton>
-                    : <CustomButton onClick={() => unFollowUser(user.id)}>UnFollow</CustomButton>
+                    ? <CustomButton disabled={followEvent}
+                                    onClick={followCallback(user.id)}>
+                        Follow</CustomButton>
+
+                    : <CustomButton disabled={followEvent}
+                                    onClick={unFollowCallback(user.id)}>
+                        UnFollow</CustomButton>
             }
         </div>
     </li>

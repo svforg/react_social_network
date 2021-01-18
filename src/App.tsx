@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.scss';
-import {Header} from "./components/presentational/Header/Header";
 import {Main} from "./components/presentational/Main/Main";
+import HeaderContainer from "./components/containers/Header/HeaderContainer";
 
 export const App: React.FC = () => {
 
     return <div className="app-inner">
-        <Header/>
+        <HeaderContainer/>
 
         <div className="wrapper">
             <Main/>

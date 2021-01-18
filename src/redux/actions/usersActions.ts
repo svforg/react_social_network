@@ -9,6 +9,7 @@ export type UsersACType =
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setTotalCountAC>
     | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof toggleFollowEventAC>
 
 
 export const showNextUsersAC = (users: Array<UsersType>) => ({
@@ -39,3 +40,8 @@ export const toggleIsFetchingAC = (isFetching: boolean) => ({
     type: USERS_TYPES.TOGGLE_IS_FETCHING,
     payload: {isFetching}
 } as any );
+export const toggleFollowEventAC = (isFetching: boolean) => ({
+    type: USERS_TYPES.TOGGLE_FOLLOW_EVENT,
+    payload: {isFetching}
+} as any );
+
