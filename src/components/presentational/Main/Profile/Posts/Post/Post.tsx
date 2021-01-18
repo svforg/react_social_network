@@ -26,12 +26,12 @@ export const Post: React.FC<PostPropsType> = React.memo(props => {
 
         <div className={css.message}>{text}</div>
 
-        <div className={css.like}>
-            <img className={css.pic}
+        <span className={css.like}>
+            <img className={css.likePic}
                  src="https://iqonic.design/themes/socialv/html-dark/images/icon/01.png"
                  alt=""/>
 
             <span>{like}</span>
-        </div>
+        </span>
     </article>
 });

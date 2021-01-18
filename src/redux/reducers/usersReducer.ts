@@ -61,13 +61,17 @@ export const usersReducer = (state: UsersState = initialState, action: UsersACTy
                 : state;
 
         case USERS_TYPES.SET_CURRENT_PAGE:
-            return action.payload.page ? {...state, currentPage: action.payload.page} : state;
+            return action.payload.page
+                ? {...state, currentPage: action.payload.page}
+                : state;
 
         case USERS_TYPES.SET_TOTAL_COUNT:
-            return action.payload.totalCount ? {...state, totalCount: action.payload.totalCount} : state;
+            return action.payload.totalCount
+                ? {...state, totalCount: action.payload.totalCount}
+                : state;
 
         case USERS_TYPES.TOGGLE_IS_FETCHING:
-            return action.payload.isFetching ? {...state, isFetching: action.payload.isFetching} : state;
+            return {...state, isFetching: action.payload.isFetching};
 
         default:
             return state;

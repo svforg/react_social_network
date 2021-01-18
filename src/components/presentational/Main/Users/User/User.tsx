@@ -29,24 +29,28 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
     const userStatus = user.status !== null ? user.status : "@designer";
 
     return <li key={user.id} className={css.card}>
-        <NavLink className={css.coverContainer} to={'/profile/' + user.id}>
+        <div className={css.coverContainer}>
             <img
                 className={css.coverImg}
                 alt="cover-img"
                 src={userLgPhoto}/>
-        </NavLink>
+        </div>
 
         <div className={css.userContainer}>
             <div className={css.userDetails}>
                 <div className={css.userImgInner}>
-                    <img
-                        className={css.userImg}
-                        alt="profile-img"
-                        src={userSmPhoto}/>
+                    <NavLink  to={'/profile/' + user.id}>
+                        <img
+                            className={css.userImg}
+                            alt="profile-img"
+                            src={userSmPhoto}/>
+                    </NavLink>
                 </div>
 
                 <div>
-                    <h4>{user.name}</h4>
+                    <NavLink className={css.coverContainer} to={'/profile/' + user.id}>
+                        <h4>{user.name}</h4>
+                    </NavLink>
 
                     <h6>{userStatus}</h6>
                     {/*<p>{user.location.city}, {user.location.country}</p>*/}

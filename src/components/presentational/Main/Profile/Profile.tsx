@@ -2,10 +2,13 @@ import React from "react";
 import {Posts} from "./Posts/Posts";
 import {User} from "./User/User";
 import {CreatePost} from "./CreatePost/CreatePost";
-import {ProfileType} from "../../../../redux/reducers/profileReducer";
+import {ProfilePostType} from "../../../../redux/reducers/profileReducer";
+import {PreLoader} from "../../../shared/PreLoader/PreLoader";
 
 type ProfilePropsType = {
-    profile: ProfileType
+    info?: any
+    posts: ProfilePostType[]
+    postText: string
     addProfilePost: () => void
     addProfilePostText: (title: string) => void
 }
@@ -13,18 +16,22 @@ type ProfilePropsType = {
 export const Profile: React.FC<ProfilePropsType> = React.memo(props => {
 
     const {
-        profile,
+        info,
+        posts,
+        postText,
         addProfilePost,
         addProfilePostText,
     } = props;
 
+    if (!info) return <PreLoader/>;
+
     return <>
-        <User/>
+        <User info={info}/>
 
         <CreatePost addProfilePost={addProfilePost}
                     addProfilePostText={addProfilePostText}
-                    postText={profile.postText}/>
+                    postText={postText}/>
 
-        <Posts posts={profile.posts}/>
+        <Posts posts={posts}/>
     </>
 });

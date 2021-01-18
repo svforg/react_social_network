@@ -9,7 +9,9 @@ type PostsPropsType = {
 
 export const Posts: React.FC<PostsPropsType> = React.memo(props => {
 
-    const {posts} = props;
+    const {
+        posts
+    } = props;
 
     const postElements = Array.isArray(posts) && posts.length &&
         posts.map(post => <Post key={post.id}

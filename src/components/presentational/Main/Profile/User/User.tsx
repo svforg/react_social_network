@@ -1,24 +1,38 @@
 import React from "react";
 import css from './User.module.scss';
 
-export const User: React.FC = () => {
+type UserFCType = {
+    info?: any
+}
+export const User: React.FC<UserFCType> = props => {
+
+    const {info} = props;
+
+
+    const userSmPhoto = info.photos.small !== null
+        ? info.photos.small
+        : "/react_social_network/images/user/05.jpg";
+
+    const userLgPhoto = info.photos.large == null
+        ? info.photos.large
+        : "/react_social_network/images/page-img/profile-bg1.jpg";
 
     return <div className={css.user}>
         <div className={css.backgroundWrapper}>
             <img className={css.background}
-                 src="https://iqonic.design/themes/socialv/html-dark/images/page-img/profile-bg1.jpg"
-                 alt="Bni Cyst bg"/>
+                 src={userLgPhoto}
+                 alt={info.fullName}/>
         </div>
 
         <figure className={css.info}>
             <div className={css.avatarWrapper}>
                 <img className={css.avatar}
-                     src="https://iqonic.design/themes/socialv/html-dark/images/user/11.png"
-                     alt="Bni Cyst ava"/>
+                     src={userSmPhoto}
+                     alt={info.fullName}/>
             </div>
 
             <figcaption className={css.caption}>
-                Bni Cyst
+                {info.fullName}
             </figcaption>
         </figure>
     </div>

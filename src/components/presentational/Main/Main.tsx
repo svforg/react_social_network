@@ -2,8 +2,8 @@ import React from "react";
 import css from './Main.module.scss';
 import {Route} from "react-router-dom";
 import {DialogsContainer} from "../../containers/Main/Dialogs/DialogsContainer";
-import {ProfileContainer} from "../../containers/Main/Profile/ProfileContainer";
 import {SidebarContainer} from "../../containers/Main/Sidebar/SidebarContainer";
+import ProfileContainer from "../../containers/Main/Profile/ProfileContainer";
 import UsersContainer from "../../containers/Main/Users/UsersContainer";
 
 export const Main: React.FC = () => {
