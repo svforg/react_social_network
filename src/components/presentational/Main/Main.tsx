@@ -12,7 +12,7 @@ export const Main: React.FC = () => {
         <SidebarContainer/>
 
         <div className={css.content}>
-            <Route path="/profile"
+            <Route path="/profile/:userId"
                    render={() =>
                        <ProfileContainer/>
                    }/>

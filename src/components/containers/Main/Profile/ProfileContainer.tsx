@@ -4,18 +4,19 @@ import {addProfilePostAC, addProfilePostTextAC, showProfileAC} from "../../../..
 import {Profile} from "../../../presentational/Main/Profile/Profile";
 import {ProfileType} from "../../../../redux/reducers/profileReducer";
 import axios from "axios";
+import {RouteComponentProps, withRouter} from "react-router";
 
 
-class ProfileContainer extends React.Component<TProps> {
+class ProfileContainer extends React.Component<RouteComponentProps<ProfileRouterProps> & TProps> {
 
     componentDidMount() {
 
-        //const {} = this.props;
+        let userId = this.props.match.params.userId;
+        if (userId === "") userId = "2";
 
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/${2}`)
+            .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
-                debugger
                 this.props.showProfileAC(response.data);
             });
     }
@@ -38,7 +39,7 @@ class ProfileContainer extends React.Component<TProps> {
     }
 }
 
-const mapStateToProps = ({profile}: { profile: ProfileType }): ProfileType => {
+const mapStateToProps = ({profile}: { profile: ProfileType }, props: any): ProfileType => {
     return {
         info: profile.info,
         posts: profile.posts,
@@ -54,8 +55,11 @@ const connector = connect(mapStateToProps, {
 
 type TProps = ConnectedProps<typeof connector>;
 
-export default connector(ProfileContainer);
+interface ProfileRouterProps {
+    userId: string;
+}
 
+export default withRouter(connector(React.memo(ProfileContainer)) as any);
 
 // import {selectProfile} from "../../../../redux/selectors/profileSelectors";
 // import {useDispatch} from "../../../../redux/useDispatchHOC";

@@ -6,8 +6,8 @@ export type DialogsACType =
 
 export const addDialogMessageAC = () => ({
     type: DIALOGS_TYPES.ADD_DIALOG_MESSAGE
-} as const);
+} as any);
 export const addDialogMessageTextAC = (messageText: string) => ({
     type: DIALOGS_TYPES.ADD_DIALOG_MESSAGE_TEXT,
     payload: {messageText}
-} as const);
+} as any);

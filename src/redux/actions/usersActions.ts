@@ -14,28 +14,28 @@ export type UsersACType =
 export const showNextUsersAC = (users: Array<UsersType>) => ({
     type: USERS_TYPES.SHOW_NEXT_USERS,
     payload: {users}
-} as const );
+} as any );
 export const showMoreUsersAC = (users: Array<UsersType>) => ({
     type: USERS_TYPES.SHOW_MORE_USERS,
     payload: {users}
-} as const );
+} as any );
 export const unFollowUserAC = (userId: string) => ({
     type: USERS_TYPES.UN_FOLLOW_USER,
     payload: {userId}
-} as const );
+} as any );
 export const followUserAC = (userId: string) => ({
     type: USERS_TYPES.FOLLOW_USER,
     payload: {userId}
-} as const );
+} as any );
 export const setCurrentPageAC = (page: number) => ({
     type: USERS_TYPES.SET_CURRENT_PAGE,
     payload: {page}
-} as const );
+} as any );
 export const setTotalCountAC = (totalCount: number) => ({
     type: USERS_TYPES.SET_TOTAL_COUNT,
     payload: {totalCount}
-} as const );
+} as any );
 export const toggleIsFetchingAC = (isFetching: boolean) => ({
     type: USERS_TYPES.TOGGLE_IS_FETCHING,
     payload: {isFetching}
-} as const );
+} as any );

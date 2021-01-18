@@ -66,11 +66,9 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
         <div>{pages}</div>
 
         <Grid container item xs={12} spacing={2}>
-            <React.Fragment>
-                <Grid item xs={6}><ul>{leftColumn}</ul></Grid>
+            <Grid item xs={6}><ul>{leftColumn}</ul></Grid>
 
-                <Grid item xs={6}><ul>{rightColumn}</ul></Grid>
-            </React.Fragment>
+            <Grid item xs={6}><ul>{rightColumn}</ul></Grid>
         </Grid>
 
         <CustomButton onClick={loadMore}>Get users</CustomButton>

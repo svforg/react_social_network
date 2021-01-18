@@ -10,12 +10,12 @@ export type ProfileACType =
 export const addProfilePostAC = () => ({
     type: PROFILE_TYPES.ADD_PROFILE_POST,
     payload: {postId: v1()}
-} as const);
+} as any);
 export const addProfilePostTextAC = (postText: string) => ({
     type: PROFILE_TYPES.ADD_PROFILE_POST_TEXT,
     payload: {postText}
-} as const);
+} as any);
 export const showProfileAC = (info: ProfileInfoType) => ({
     type: PROFILE_TYPES.SHOW_PROFILE,
     payload: {info}
-} as const);
+} as any);
