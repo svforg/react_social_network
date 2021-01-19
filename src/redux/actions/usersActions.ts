@@ -2,46 +2,56 @@ import {USERS_TYPES} from "../constats/usersConstats";
 import {UsersType} from "../reducers/usersReducer";
 
 export type UsersACType =
-    ReturnType<typeof showNextUsersAC>
-    | ReturnType<typeof showMoreUsersAC>
-    | ReturnType<typeof followUserAC>
-    | ReturnType<typeof unFollowUserAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalCountAC>
-    | ReturnType<typeof toggleIsFetchingAC>
-    | ReturnType<typeof toggleFollowEventAC>
+    ReturnType<typeof showMoreUsers>
+    | ReturnType<typeof showNextPageUsers>
+    | ReturnType<typeof followUser>
+    | ReturnType<typeof unFollowUser>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalCount>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof fetchingFollowEvent>
 
 
-export const showNextUsersAC = (users: Array<UsersType>) => ({
-    type: USERS_TYPES.SHOW_NEXT_USERS,
-    payload: {users}
-} as any );
-export const showMoreUsersAC = (users: Array<UsersType>) => ({
+export const showMoreUsers = (users: Array<UsersType>) => ({
     type: USERS_TYPES.SHOW_MORE_USERS,
     payload: {users}
-} as any );
-export const unFollowUserAC = (userId: string) => ({
+} as any);
+export const showNextPageUsers = (users: Array<UsersType>) => ({
+    type: USERS_TYPES.SHOW_NEXT_USERS,
+    payload: {users}
+} as any);
+export const unFollowUser = (userId: number) => ({
     type: USERS_TYPES.UN_FOLLOW_USER,
     payload: {userId}
-} as any );
-export const followUserAC = (userId: string) => ({
+} as any);
+export const followUser = (userId: number) => ({
     type: USERS_TYPES.FOLLOW_USER,
     payload: {userId}
-} as any );
-export const setCurrentPageAC = (page: number) => ({
+} as any);
+export const setCurrentPage = (page: number) => ({
     type: USERS_TYPES.SET_CURRENT_PAGE,
     payload: {page}
-} as any );
-export const setTotalCountAC = (totalCount: number) => ({
+} as any);
+export const setTotalCount = (totalCount: number) => ({
     type: USERS_TYPES.SET_TOTAL_COUNT,
     payload: {totalCount}
-} as any );
-export const toggleIsFetchingAC = (isFetching: boolean) => ({
+} as any);
+export const toggleIsFetching = (isFetching: boolean) => ({
     type: USERS_TYPES.TOGGLE_IS_FETCHING,
     payload: {isFetching}
-} as any );
-export const toggleFollowEventAC = (isFetching: boolean, userId: string) => ({
+} as any);
+export const fetchingFollowEvent = (isFetching: boolean, userId: number) => ({
     type: USERS_TYPES.TOGGLE_FOLLOW_EVENT,
     payload: {isFetching, userId}
-} as any );
+} as any);
 
+export const usersAC = {
+    showMoreUsers,
+    showNextPageUsers,
+    followUser,
+    unFollowUser,
+    setCurrentPage,
+    setTotalCount,
+    toggleIsFetching,
+    fetchingFollowEvent,
+};

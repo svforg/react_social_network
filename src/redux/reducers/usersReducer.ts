@@ -6,7 +6,7 @@ export type UsersPhotosType = {
     large: string
 }
 export type UsersType = {
-    id: string
+    id: number
     followed: boolean
     name: string
     status: string
@@ -23,7 +23,7 @@ export type UsersState = {
 
 let initialState = {
     users: [],
-    pageSize: 16,
+    pageSize: 8,
     totalCount: 0,
     currentPage: 1,
     isFetching: false,

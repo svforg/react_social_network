@@ -1,29 +1,15 @@
 import React from "react";
 import {connect, ConnectedProps} from "react-redux";
 import {AuthType} from "../../../redux/reducers/authReducer";
-import {setUserDataAC} from "../../../redux/actions/authActions";
+import {authTC} from "../../../redux/thunk/authThunk";
 import {Header} from "../../presentational/Header/Header";
-import {instanceApi} from "../../../api/server";
 
 
 class HeaderContainer extends React.Component<TProps> {
 
-    async componentDidMount() {
-
-        let data = await instanceApi.signInAPI();
-
-        if (data.resultCode === 0) {
-
-            let {
-                id,
-                email,
-                login
-            } = data.data;
-
-            this.props.setUserDataAC(id, email, login);
-
-            //запросить профиль по id
-        }
+    componentDidMount() {
+        this.props.fetchAuth();
+        //запросить свой профиль по id
     }
 
     render() {
@@ -52,7 +38,7 @@ const mapStateToProps = ({auth}: { auth: AuthType }): AuthType => {
 };
 
 const connector = connect(mapStateToProps, {
-    setUserDataAC
+    fetchAuth: authTC.fetchAuth
 });
 
 type TProps = ConnectedProps<typeof connector>;

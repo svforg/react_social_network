@@ -1,5 +1,5 @@
 import {ProfileType, profileReducer} from "./profileReducer";
-import {addProfilePostAC} from "../actions/profileActions";
+import {addProfilePost} from "../actions/profileActions";
 
 test('correct task should be deleted from correct array', () => {
     const startState: ProfileType = {
@@ -14,7 +14,7 @@ test('correct task should be deleted from correct array', () => {
     const newAddingText =  "New text";
     startState.postText = newAddingText;
 
-    const action = addProfilePostAC();
+    const action = addProfilePost();
 
     const endState = profileReducer(startState, action);
 
