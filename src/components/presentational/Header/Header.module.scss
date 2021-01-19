@@ -8,10 +8,14 @@ $colorHeaderBg: #1e2745;
     background: $colorHeaderBg;
     box-shadow: 0 0 20px 0 rgba(44, 101, 144, 0.1);
 }
+.headerInner {
+    display: flex;
+}
 .logoLink {
     display: flex;
     align-items: center;
     padding: 10px 16px;
+    margin-right: auto;
 }
 .logoImg {
     height: 24px;
@@ -23,3 +27,4 @@ $colorHeaderBg: #1e2745;
     font-size: 28px;
     line-height: 45px;
 }
+.authBlock{}

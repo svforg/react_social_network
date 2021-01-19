@@ -10,30 +10,30 @@ import {
 import {PreLoader} from "../../../shared/PreLoader/PreLoader";
 import {Users} from "../../../presentational/Main/Users/Users";
 import {UsersState} from "../../../../redux/reducers/usersReducer";
-import {getUsersAPI} from "../../../../api/api";
+import {instanceApi} from "../../../../api/server";
 
 class UsersContainer extends React.Component<TProps> {
 
-    componentDidMount() {
+    async componentDidMount() {
         const {currentPage, pageSize} = this.props;
 
         this.props.toggleIsFetchingAC(true);
 
-        getUsersAPI(pageSize, currentPage)
-            .then(data => {
+        let data = await instanceApi.getUsersAPI(pageSize, currentPage);
 
-                this.props.toggleIsFetchingAC(false);
-                this.props.showMoreUsersAC(data.items);
-                //this.props.setTotalCountAC(response.data.totalCount);
-                this.props.setTotalCountAC(200);
-            });
+        if (Array.isArray(data.items) && data.items.length) {
+            this.props.toggleIsFetchingAC(false);
+            this.props.showMoreUsersAC(data.items);
+            //this.props.setTotalCountAC(response.data.totalCount);
+            this.props.setTotalCountAC(200);
+        }
     };
 
     loadMoreCallback = (pagesIndex: number) => {
         const pageSize = this.props;
         this.props.setCurrentPageAC(pagesIndex);
 
-        getUsersAPI(pageSize, pagesIndex)
+        instanceApi.getUsersAPI(pageSize, pagesIndex)
             .then(data => {
                 this.props.showMoreUsersAC(data.items);
             });
@@ -45,7 +45,7 @@ class UsersContainer extends React.Component<TProps> {
         this.props.toggleIsFetchingAC(true);
         this.props.setCurrentPageAC(pagesIndex);
 
-        getUsersAPI(pageSize, pagesIndex)
+        instanceApi.getUsersAPI(pageSize, pagesIndex)
             .then(data => {
                 this.props.toggleIsFetchingAC(false);
                 this.props.showNextUsersAC(data.items);
@@ -54,8 +54,11 @@ class UsersContainer extends React.Component<TProps> {
     };
 
     followUserCallback = (userId: string) => this.props.followUserAC(userId);
+
     unFollowUserCallback = (userId: string) => this.props.unFollowUserAC(userId);
-    toggleFollowEventCallback = (isFetching: boolean) => this.props.toggleFollowEventAC(isFetching);
+
+    toggleFollowEventCallback = (isFetching: boolean, userId: string) =>
+        this.props.toggleFollowEventAC(isFetching, userId);
 
     render() {
 
@@ -70,18 +73,18 @@ class UsersContainer extends React.Component<TProps> {
 
         return (
             isFetching
-            ? <PreLoader/>
-            : <Users
-                users={users}
-                pageSize={pageSize}
-                totalCount={totalCount}
-                currentPage={currentPage}
-                followEvent={followEvent}
-                loadNextCallback={this.loadNextCallback}
-                loadMoreCallback={this.loadMoreCallback}
-                followUser={this.followUserCallback}
-                unFollowUser={this.unFollowUserCallback}
-                toggleFollowEventCallback={this.toggleFollowEventCallback}/>
+                ? <PreLoader/>
+                : <Users
+                    users={users}
+                    pageSize={pageSize}
+                    totalCount={totalCount}
+                    currentPage={currentPage}
+                    followEvent={followEvent}
+                    loadNextCallback={this.loadNextCallback}
+                    loadMoreCallback={this.loadMoreCallback}
+                    followUser={this.followUserCallback}
+                    unFollowUser={this.unFollowUserCallback}
+                    toggleFollowEventCallback={this.toggleFollowEventCallback}/>
         )
     }
 }

@@ -40,8 +40,8 @@ export const toggleIsFetchingAC = (isFetching: boolean) => ({
     type: USERS_TYPES.TOGGLE_IS_FETCHING,
     payload: {isFetching}
 } as any );
-export const toggleFollowEventAC = (isFetching: boolean) => ({
+export const toggleFollowEventAC = (isFetching: boolean, userId: string) => ({
     type: USERS_TYPES.TOGGLE_FOLLOW_EVENT,
-    payload: {isFetching}
+    payload: {isFetching, userId}
 } as any );
 

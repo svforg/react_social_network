@@ -3,23 +3,27 @@ import {connect, ConnectedProps} from "react-redux";
 import {AuthType} from "../../../redux/reducers/authReducer";
 import {setUserDataAC} from "../../../redux/actions/authActions";
 import {Header} from "../../presentational/Header/Header";
-import {signInAPI} from "../../../api/api";
+import {instanceApi} from "../../../api/server";
+
 
 class HeaderContainer extends React.Component<TProps> {
 
-    componentDidMount() {
+    async componentDidMount() {
 
-        signInAPI()
-            .then(data => {
+        let data = await instanceApi.signInAPI();
 
-                const {
-                    id,
-                    email,
-                    login
-                } = data;
+        if (data.resultCode === 0) {
 
-                data.resultCode === 0 && this.props.setUserDataAC(id, email, login);
-            });
+            let {
+                id,
+                email,
+                login
+            } = data.data;
+
+            this.props.setUserDataAC(id, email, login);
+
+            //запросить профиль по id
+        }
     }
 
     render() {

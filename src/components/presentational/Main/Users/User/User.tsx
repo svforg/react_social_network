@@ -1,49 +1,31 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {NavLink} from "react-router-dom";
 import css from './User.module.scss';
 import {UsersType} from "../../../../../redux/reducers/usersReducer";
 import {CustomButton} from "../../../../shared/CustomButton/CustomButton";
-import axios from "axios";
-import {followUserAPI, unFollowUserAPI} from "../../../../../api/api";
+import {instanceApi} from "../../../../../api/server";
+
 
 type UserPropsType = {
     user: UsersType
-    followEvent: boolean
+    followEvent: any[]
     unFollowUser: (userId: string) => void
     followUser: (userId: string) => void
-    toggleFollowEventCallback: (isFetching: boolean) => void
+    toggleFollowEventCallback: (isFetching: boolean, userId: string) => void
 }
 
 export const User: React.FC<UserPropsType> = React.memo(props => {
 
     const  {
         user,
-        toggleFollowEventCallback,
-        unFollowUser,
         followUser,
+        unFollowUser,
+        toggleFollowEventCallback,
         followEvent,
     } = props;
 
-    const followCallback = (userId: string): any => {
-        toggleFollowEventCallback(true);
-
-        followUserAPI(userId)
-            .then(data => {
-                data.resultCode === 0 && followUser(userId);
-                toggleFollowEventCallback(false);
-            });
-    };
-
-    const unFollowCallback = (userId: string): any => {
-        toggleFollowEventCallback(true);
-
-        unFollowUserAPI(userId)
-            .then(data => {
-                data.resultCode === 0 && unFollowUser(userId);
-                toggleFollowEventCallback(false);
-            });
-    };
-
+    const followCallback = () => {};
+    const unFollowCallback = () => {};
 
     const userSmPhoto = user.photos.small !== null
         ? user.photos.small
@@ -53,7 +35,7 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
         ? user.photos.large
         : "/react_social_network/images/page-img/profile-bg1.jpg";
 
-    const userStatus = user.status !== null ? user.status : "@designer";
+    const userStatus = (user.status !== null && user.status !== "")  ? user.status : "@designer";
 
     return <li key={user.id} className={css.card}>
         <div className={css.coverContainer}>
@@ -86,12 +68,32 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
 
             {
                 !user.followed
-                    ? <CustomButton disabled={followEvent}
-                                    onClick={followCallback(user.id)}>
+                    ? <CustomButton disabled={followEvent.some(id => id === user.id)}
+                                    onClick={() => {
+                                        toggleFollowEventCallback(true, user.id);
+
+                                        instanceApi.followUserAPI(user.id)
+                                            .then(data => {
+                                                if (data.resultCode === 0) {
+                                                    followUser(user.id);
+                                                    toggleFollowEventCallback(false, user.id);
+                                                }
+                                            });
+                                    }}>
                         Follow</CustomButton>
 
-                    : <CustomButton disabled={followEvent}
-                                    onClick={unFollowCallback(user.id)}>
+                    : <CustomButton disabled={followEvent.some(id => id === user.id)}
+                                    onClick={() => {
+                                        toggleFollowEventCallback(true, user.id);
+
+                                        instanceApi.unFollowUserAPI(user.id)
+                                            .then(data => {
+                                                if (data.resultCode == 0) {
+                                                    unFollowUser(user.id);
+                                                    toggleFollowEventCallback(false, user.id);
+                                                }
+                                            });
+                                    }}>
                         UnFollow</CustomButton>
             }
         </div>

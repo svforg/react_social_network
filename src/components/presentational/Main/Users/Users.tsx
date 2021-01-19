@@ -9,12 +9,12 @@ type UsersPropsType = {
     pageSize: number
     totalCount: number
     currentPage: number
-    followEvent: boolean
+    followEvent: any[]
     loadNextCallback: (pagesIndex: number) => void
     loadMoreCallback: (pagesIndex: number) => void
     followUser: (userId: string) => void
     unFollowUser: (userId: string) => void
-    toggleFollowEventCallback: (isFetching: boolean) => void
+    toggleFollowEventCallback: (isFetching: boolean, userId: string) => void
 }
 export const Users: React.FC<UsersPropsType> = React.memo(props => {
 
@@ -38,7 +38,7 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
     const pagesIndexes = [];
     for (let i = 1; i <= pagesCnt; i++) pagesIndexes.push(i);
 
-    const pages = Array.isArray(pagesIndexes) && pagesIndexes.length &&
+    const pages = //Array.isArray(pagesIndexes) && pagesIndexes.length &&
         pagesIndexes.map((pagesIndex: number) => {
             const loadNext = () => loadNextCallback(pagesIndex);
 
@@ -65,7 +65,8 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
 
     const loadMore = () => loadMoreCallback(currentPage + 1);
 
-    return <>
+    return  <>
+
         <div>{pages}</div>
 
         <Grid container item xs={12} spacing={2}>

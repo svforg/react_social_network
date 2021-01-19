@@ -18,7 +18,7 @@ export type UsersState = {
     totalCount: number
     currentPage: number
     isFetching: boolean
-    followEvent: boolean
+    followEvent: any[]
 }
 
 let initialState = {
@@ -27,7 +27,7 @@ let initialState = {
     totalCount: 0,
     currentPage: 1,
     isFetching: false,
-    followEvent: false,
+    followEvent: [],
 };
 
 export const usersReducer = (state: UsersState = initialState, action: UsersACType): UsersState => {
@@ -76,7 +76,12 @@ export const usersReducer = (state: UsersState = initialState, action: UsersACTy
             return {...state, isFetching: action.payload.isFetching};
 
         case USERS_TYPES.TOGGLE_FOLLOW_EVENT:
-            return {...state, isFetching: action.payload.isFetching};
+            return {
+                ...state,
+                followEvent: action.payload.isFetching
+                    ? [...state.followEvent, action.payload.userId]
+                    : state.followEvent.filter(id => id !== action.payload.userId)
+            };
 
         default:
             return state;
