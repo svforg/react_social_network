@@ -32,6 +32,11 @@ export const App: React.FC = () => {
                            render={() =>
                                <UsersContainer/>
                            }/>
+
+                    <Route path="/login"
+                           render={() =>
+                               <Login/>
+                           }/>
                 </div>
             </main>
         </div>
